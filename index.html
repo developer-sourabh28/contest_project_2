@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    #box{
+        border: 1px solid;
+        width: 500px;
+        height: 280px;
+        display: block;
+    }
+   
+    #emailError{
+        margin-top: 40px;
+        margin-left: 20px;
+    }
+    #passwordError{
+        margin-left: 20px;
+    }
+    input{
+        display: block;
+        width: 300px;
+        height: 20px;
+        border-radius: 5px;
+    }
+    
+    #email{
+        margin: 20px;
+        width: 300px;
+        height: 25px;
+        margin-top: 10px;
+    }
+   
+    #email1{
+        margin-top: 5px;
+
+    }
+    #password{
+        margin: 20px;
+        margin-top: 30px;
+    }
+
+    #password1{
+        margin-top: 5px;
+    }
+    
+    button{
+        margin-left: 20px;
+        width: 130px;
+        height: 30px;
+        border-radius: 5px;
+        background-color: white;
+        color: black;
+        margin-top: 30px;
+    }
+    </style>
+</head>
+<body>
+    <form id="form">
+        <div id="box">
+            <div id="email">Email<input id="email1" placeholder="Example@email.com"></div>
+            <div id="emailError" class="error"></div>
+            <div id="password">Password<input id="password1" type="password" placeholder="Your Password"></div>
+            <div id="passwordError" class="error"></div>
+            <button id="submitBtn" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    const box = document.querySelector('#box');
+    const form = document.querySelector('#form');
+    const email = document.querySelector('#email1');
+    const password = document.querySelector('#password1');
+    const emailError = document.querySelector('#emailError');
+    const passwordError = document.querySelector('#passwordError');
+    const submitButton = document.querySelector('#submitBtn') 
+
+    email.addEventListener('input', function(){
+        if(email.value.length < 3 || !email.value.includes("@") || !email.value.includes(".")){
+            emailError.textContent = 'Make sure email is more than 3 characters and has @ and a .';
+            emailError.style.color = 'red';
+        }else{
+            emailError.textContent = 'All good to go';
+            emailError.style.color = 'green';
+        }
+    });
+     
+    password.addEventListener('input', function(){
+        if(password.value.length < 8){
+            passwordError.textContent = 'Make sure password is more than 8 characters.';
+            passwordError.style.color = 'red';
+        }
+        else{
+            passwordError.textContent = 'All good to go';
+            passwordError.style.color = 'green';
+        }
+    });
+
+    form.addEventListener('submit', function(event){
+        event.preventDefault();
+
+        if(emailError.textContent == 'All good to go' && passwordError.textContent == 'All good to go'){
+           const confirmed = confirm('Are you sure you want to sign up?');
+           
+           if(confirmed){
+            alert('Successfull signup!');
+           }else{
+            email.value = '';
+            password.value = '';
+            emailError.textContent = '';
+            passwordError.textContent = '';
+           }
+        }else{
+            alert('please correct the error')
+        }
+    });
+</script>
+</body>
+</html>
