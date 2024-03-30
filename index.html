@@ -80,7 +80,7 @@
 
     email.addEventListener('input', function(){
         if(email.value.length < 3 || !email.value.includes("@") || !email.value.includes(".")){
-            emailError.textContent = 'Make sure email is more than 3 characters and has @ and a .';
+            emailError.textContent = 'Make sure email is more than 3 characters and has @ and a fullstop (.).';
             emailError.style.color = 'red';
         }else{
             emailError.textContent = 'All good to go';
